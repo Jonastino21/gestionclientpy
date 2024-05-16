@@ -35,9 +35,6 @@ def createTable():
     except mysql.connector.Error as err:
         messagebox.showerror("Database Error", f"Error: {err}")
 
-createDatabase()
-createTable()
-
 def hash_password(password):
     # Convertir le mot de passe en bytes (la fonction de hachage hashlib nécessite des données de type bytes)
     password_bytes = password.encode('utf-8')
@@ -53,9 +50,9 @@ def hash_password(password):
 
     return hashed_password
 
-password = "mon_mot_de_passe"
-hashed_password = hash_password(password)
-print("Mot de passe haché:", hashed_password)
+# password = "mon_mot_de_passe"
+# hashed_password = hash_password(password)
+# print("Mot de passe haché:", hashed_password)
 
 def charger_photo(self):
     filepath = filedialog.askopenfilename(title="Sélectionner une photo", filetypes=[('png files','.png'),('all files','.*')])
@@ -64,12 +61,9 @@ def charger_photo(self):
         self.photo_path = filepath
         with Image.open(self.photo_path) as img:
             img = img.resize((50, 50))
-        
-        
-        # photo_tk = ImageTk.PhotoImage(image_pil)
-        # # Afficher l'image dans un Label
-        # photo.configure(image=photo_tk)
-        # photo.image = photo_tk  
+
+createDatabase()
+createTable()        
         
 class Modal:
     def __init__(self,parent,title):
@@ -89,7 +83,16 @@ class Modal:
         self.modal.title(title)
         self.modal.resizable(False,False)
         self.modal.geometry('500x400')
-      
+        
+        img2_path = "./icones/logo.png"
+        original_image2 = Image.open(img2_path)
+        new_width2 = 30 
+        new_height2 = 30  
+        resized_image2 = original_image2.resize((new_width2, new_height2))
+
+        logo = ImageTk.PhotoImage(resized_image2)
+        label1 = Label(self.modal, text="sary", image=logo)
+        label1.place(x=245,y=13)
 
         nom = Label(self.modal, text='Nom')
         nom.place(x=60, y=50)
@@ -148,8 +151,8 @@ class Modal:
 
         
 
-        hide = ImageTk.PhotoImage(Image.open('hide.png').resize((20,20)))
-        view = ImageTk.PhotoImage(Image.open('view.png').resize((20,20)))
+        hide = ImageTk.PhotoImage(Image.open('./icones/hide.png').resize((20,20)))
+        view = ImageTk.PhotoImage(Image.open('./icones/view.png').resize((20,20)))
 
         btn = Button(self.modal ,image=hide, bg='white',activebackground='white',bd=0,command=update_entry, borderwidth=0, highlightthickness=0)
         btn.place(x=440,y=293)
@@ -203,6 +206,7 @@ class Modal:
         self.rein()
         messagebox.showinfo("Succès", "Employé ajouté avec succès.")
         conn.close()
+    
     def rein(self):
         e_nom.delete(0, END)
         e_prenoms.delete(0, END)
@@ -361,6 +365,7 @@ def ajouter_tranche():
             e_valeur.delete(0, "end")
     else:
         print("Erreur lors d'insertion")
+
 def supprimer_valeur():
     conn = mysql.connector.connect(
         host="localhost",
@@ -382,6 +387,7 @@ def supprimer_valeur():
         conn.commit()
 
         conn.close()
+
 def supprimer_valeur_pourcentage():
     conn = mysql.connector.connect(
         host="localhost",
@@ -403,6 +409,7 @@ def supprimer_valeur_pourcentage():
         conn.commit()
 
         conn.close()
+
 def supprimer_valeur_tranche():
     conn = mysql.connector.connect(
         host="localhost",
@@ -483,11 +490,23 @@ class Admin:
         global e_tranche
         global e_ppayment
         
+        
         canvas = Canvas( admin, width=1000, height=640, background='#043737')
         canvas.place(x=0,y=0)
 
         frame = Frame( admin,width=990,height=55, background='#3d8a8a')
         frame.place(x=5,y=10)
+ 
+        img2_path = "./icones/logo.png"
+        original_image2 = Image.open(img2_path)
+        new_width2 = 60 
+        new_height2 = 60  
+        resized_image2 = original_image2.resize((new_width2, new_height2))
+
+        self.logo = ImageTk.PhotoImage(resized_image2)
+        label1 = Label(admin, text="sary", image=self.logo)
+        label1.place(x=470,y=75)
+
         self.mess = ImageTk.PhotoImage(Image.open('./icones/messager.png').resize((30,30)))
         self.btn_mess = Button(frame ,image= self.mess,bd=0,background='#3d8a8a',activebackground='#3d8a8a', borderwidth=0, highlightthickness=0)
         self.btn_mess.place(x=800,y=10)
@@ -509,12 +528,12 @@ class Admin:
         frame1 = Frame( admin,width=400, height=400)
         frame1.place(x=70, y=150)
 
-        self.prixmc = Label(frame1, text="Prix en m²:", font='calibri 16 bold')
-        self.prixmc.place(x=10,y=25)
+        self.prixmc = Label(frame1, text="Prix en m²:", font='calibri 9 bold')
+        self.prixmc.place(x=7,y=35)
         e_prixmc = Entry(frame1, width=7,font='calibri 16 bold')
-        e_prixmc.place(x=115,y=25,height=35)
+        e_prixmc.place(x=80,y=25,height=35)
         self.devise = Label(frame1, text="MGA", font='calibri 13 bold')
-        self.devise.place(x=210,y=28)
+        self.devise.place(x=165,y=28)
         self.ajouter1 = Label(frame1, text='Ajouter',activebackground='white')
         self.ajouter1.place(x=260,y=43)
         self.ajout1 = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
@@ -526,12 +545,12 @@ class Admin:
         self.btn_s1 = Button(frame1 ,image= self.supp,bd=0, borderwidth=0, highlightthickness=0,command=supprimer_valeur)
         self.btn_s1.place(x=345,y=25)
         
-        self.tranche = Label(frame1, text="Tranche de \n payements", font='calibri 16 bold')
-        self.tranche.place(x=10,y=145)
-        e_tranche = Entry(frame1, width=5,font='calibri 16 bold')
-        e_tranche.place(x=125,y=155,height=35)
+        self.tranche = Label(frame1, text="Tranche de payements: ", font='calibri 9 bold')
+        self.tranche.place(x=7,y=165)
+        e_tranche = Entry(frame1, width=3,font='calibri 16 bold')
+        e_tranche.place(x=130,y=155,height=35)
         self.delai = Label(frame1, text="Mois", font='calibri 13 bold')
-        self.delai.place(x=190,y=158)
+        self.delai.place(x=175,y=158)
         self.ajoute = Label(frame1, text='Ajouter',activebackground='white')
         self.ajoute.place(x=260,y=173)
         self.ajou = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
@@ -543,12 +562,12 @@ class Admin:
         self.btn_s1 = Button(frame1 ,image= self.suppp,bd=0, borderwidth=0, highlightthickness=0,command=supprimer_valeur_tranche)
         self.btn_s1.place(x=345,y=155)
 
-        self.ppayment = Label(frame1, text="Pourcentage \n 1er payement", font='calibri 16 bold')
-        self.ppayment.place(x=3,y=75)
+        self.ppayment = Label(frame1, text="Pourcentage 1er payement: ", font='calibri 9 bold')
+        self.ppayment.place(x=7,y=90)
         e_ppayment = Entry(frame1, width=5,font='calibri 16 bold')
-        e_ppayment.place(x=145,y=85,height=35)
+        e_ppayment.place(x=155,y=80,height=35)
         self.percent = Label(frame1, text="%", font='calibri 13 bold')
-        self.percent.place(x=210,y=88)
+        self.percent.place(x=220,y=86)
         self.ajouter2 = Label(frame1, text='Ajouter',activebackground='white')
         self.ajouter2.place(x=260,y=103)
         self.ajout2 = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
@@ -690,6 +709,7 @@ admin = Tk()
 admin.title('Admin')
 admin.geometry('1000x640')
 admin.resizable(False,False)
+
 obj = Admin(admin)
 
 admin.mainloop()

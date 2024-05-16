@@ -11,7 +11,7 @@ login.geometry("1000x640")
 login.resizable(False, False)
 
 #right page
-img_path = "img1.png"
+img_path = "./Images/img1.png"
 original_image = Image.open(img_path)
 new_width = 500 
 new_height = 640  
@@ -23,7 +23,7 @@ label.place(x=500,y=-1)
 #---------------------------
 
 #Left page
-img2_path = "logo.png"
+img2_path = "./icones/logo.png"
 original_image2 = Image.open(img2_path)
 new_width2 = 60 
 new_height2 = 60  
@@ -64,8 +64,8 @@ def update_entry():
 
 hidden = True
 
-hide = ImageTk.PhotoImage(Image.open('hide.png').resize((30,30)))
-view = ImageTk.PhotoImage(Image.open('view.png').resize((30,30)))
+hide = ImageTk.PhotoImage(Image.open('./icones/hide.png').resize((30,30)))
+view = ImageTk.PhotoImage(Image.open('./icones/view.png').resize((30,30)))
 
 btn = Button(login ,image=hide, bg='lavender',bd=0,command=update_entry)
 btn.place(x=350,y=323)

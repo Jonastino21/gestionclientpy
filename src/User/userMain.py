@@ -1,5 +1,6 @@
 from tkinter import *
-from tkinter import ttk
+import mysql.connector
+from tkinter import ttk, messagebox, filedialog
 
 class Index:
     def __init__(self,root):
@@ -18,10 +19,38 @@ class Index:
         def calcul_mesure(*args):
             try:
                 value1 = float(self.e_mesure_trano.get())
-                value2 = float(self.s_tranche_payement.get())
-                prix_m2 = 5000
+                value2 = float(s_tranche_payement.get())
+                try:
+                    conns = mysql.connector.connect(
+                    host="localhost",
+                    username="root",
+                    password="",
+                    database="threel"
+                    )
+                    cursorss = conns.cursor()
+                    cursorss.execute("SELECT Prix_m² FROM Prix_m² ")
+                    resultss = cursorss.fetchone()
+
+                    if resultss:
+                        prix_m2 = resultss[0]
+                except mysql.connector.Error as err:
+                    messagebox.showerror("Database Error", f"Error: {err}")
                 prixTotl = (value1*prix_m2)
-                pr = 40
+                try:
+                    conns = mysql.connector.connect(
+                    host="localhost",
+                    username="root",
+                    password="",
+                    database="threel"
+                    )
+                    cursorss = conns.cursor()
+                    cursorss.execute("SELECT Pourcentage_1er_payement FROM Pourcentage_1er_payement")
+                    resultss = cursorss.fetchone()
+
+                    if resultss:
+                        pr = resultss[0]
+                except mysql.connector.Error as err:
+                    messagebox.showerror("Database Error", f"Error: {err}")
                 pv = ((prixTotl*pr)/100)
                 rs = (prixTotl-pv)
                 pt = (rs/(value2-1))
@@ -32,20 +61,8 @@ class Index:
                 self.result_label.config(text="Prix Total :" ,background='red')
                 self.result_label1.config(text="1er payements :", background='black', fg='white')
                 self.result_label2.config(text="Reste à payer :")
-                
 
-        #  #Variables
-        # self.nom = StringVar()
-        # self.prenoms = StringVar()
-        # self.date_naissance = StringVar()
-        # self.sexe = StringVar()
-        # self.cin = StringVar()
-        # self.telephone = StringVar()
-        # self.photo = StringVar()
-        # self.id_employer = StringVar()
-        # self.label_mesure_trano = StringVar()
-        # self.label_tranche_payement = StringVar()
-        
+                 
 
 
         #Label_formulaire
@@ -89,10 +106,28 @@ class Index:
         self.e_photo = Entry(frame ,textvariable=self.photo, width=15)
         self.e_employer = Entry(frame ,textvariable=self.id_employer, width=12)
         self.e_mesure_trano = Entry(frame, width=5)
-        self.s_tranche_payement = Entry(frame , width=3)
+
+        s_tranche_payement = Entry(frame , width=3)
 
         self.e_mesure_trano.bind("<KeyRelease>", calcul_mesure)
-        self.s_tranche_payement.bind("<KeyRelease>", calcul_mesure)
+        s_tranche_payement.bind( calcul_mesure)
+
+        try:
+            conns = mysql.connector.connect(
+            host="localhost",
+            username="root",
+            password="",
+            database="threel"
+            )
+            cursorss = conns.cursor()
+            cursorss.execute("SELECT Tranche_de_payement FROM Tranche_de_payement ")
+            resultss = cursorss.fetchone()
+
+            if resultss:
+                valeur = resultss[0]
+                s_tranche_payement.insert(0, valeur)
+        except mysql.connector.Error as err:
+            messagebox.showerror("Database Error", f"Error: {err}")
 
         self.result_label = Label(frame, text="Prix Total :", background='red')
         self.result_label1 = Label(frame, text="1er payements :", background='black',fg='white')
@@ -119,7 +154,7 @@ class Index:
         self.e_employer.place(x=90,y=300)
         self.e_mesure_trano.place(x=100,y=350)
         self.label_mesure_trano.place(x=150,y=350)
-        self.s_tranche_payement.place(x=330,y=350)
+        s_tranche_payement.place(x=330,y=350)
         self.label_tranche_payement.place(x=370,y=350)
 
         #bouton
