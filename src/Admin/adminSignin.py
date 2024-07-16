@@ -19,7 +19,7 @@ canvas = Canvas(login, width=1000, height=640, background='#1b7e7e')
 canvas.place(x=0,y=0)
 
 #Landing
-img2_path = "./icones/logo.png"
+img2_path = "../../icones/logo.png"
 original_image2 = Image.open(img2_path)
 new_width2 = 60 
 new_height2 = 60  
@@ -58,8 +58,8 @@ password.place(x=360,y=362)
 
 hidden = True
 
-hide = ImageTk.PhotoImage(Image.open('./icones/hide.png').resize((30,30)))
-view = ImageTk.PhotoImage(Image.open('./icones/view.png').resize((30,30)))
+hide = ImageTk.PhotoImage(Image.open('../../icones/hide.png').resize((30,30)))
+view = ImageTk.PhotoImage(Image.open('../../icones/view.png').resize((30,30)))
 
 btn = Button(login ,image=hide, bg='lavender',bd=0,command=update_entry,activebackground='lavender', borderwidth=0, highlightthickness=0)
 btn.place(x=610,y=323)

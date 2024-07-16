@@ -84,7 +84,7 @@ class Modal:
         self.modal.resizable(False,False)
         self.modal.geometry('500x400')
         
-        img2_path = "./icones/logo.png"
+        img2_path = "../../icones/logo.png"
         original_image2 = Image.open(img2_path)
         new_width2 = 30 
         new_height2 = 30  
@@ -151,8 +151,8 @@ class Modal:
 
         
 
-        hide = ImageTk.PhotoImage(Image.open('./icones/hide.png').resize((20,20)))
-        view = ImageTk.PhotoImage(Image.open('./icones/view.png').resize((20,20)))
+        hide = ImageTk.PhotoImage(Image.open('../../icones/hide.png').resize((20,20)))
+        view = ImageTk.PhotoImage(Image.open('../../icones/view.png').resize((20,20)))
 
         btn = Button(self.modal ,image=hide, bg='white',activebackground='white',bd=0,command=update_entry, borderwidth=0, highlightthickness=0)
         btn.place(x=440,y=293)
@@ -497,7 +497,7 @@ class Admin:
         frame = Frame( admin,width=990,height=55, background='#3d8a8a')
         frame.place(x=5,y=10)
  
-        img2_path = "./icones/logo.png"
+        img2_path = "../../icones/logo.png"
         original_image2 = Image.open(img2_path)
         new_width2 = 60 
         new_height2 = 60  
@@ -507,13 +507,13 @@ class Admin:
         label1 = Label(admin, text="sary", image=self.logo)
         label1.place(x=470,y=75)
 
-        self.mess = ImageTk.PhotoImage(Image.open('./icones/messager.png').resize((30,30)))
+        self.mess = ImageTk.PhotoImage(Image.open('../../icones/messager.png').resize((30,30)))
         self.btn_mess = Button(frame ,image= self.mess,bd=0,background='#3d8a8a',activebackground='#3d8a8a', borderwidth=0, highlightthickness=0)
         self.btn_mess.place(x=800,y=10)
-        self.notif = ImageTk.PhotoImage(Image.open('./icones/cloche.png').resize((30,30)))
+        self.notif = ImageTk.PhotoImage(Image.open('../../icones/cloche.png').resize((30,30)))
         self.btn_notif = Button(frame ,image= self.notif,bd=0,background='#3d8a8a',activebackground='#3d8a8a', borderwidth=0, highlightthickness=0)
         self.btn_notif.place(x=850,y=10)
-        self.profil = ImageTk.PhotoImage(Image.open('./icones/avatar-homme.png').resize((50,50)))
+        self.profil = ImageTk.PhotoImage(Image.open('../../icones/avatar-homme.png').resize((50,50)))
         self.btn_profil = Button(frame ,image= self.profil,bd=0,background='#3d8a8a',activebackground='#3d8a8a', borderwidth=0, highlightthickness=0)
         self.btn_profil.place(x=920,y=2)
 
@@ -536,12 +536,12 @@ class Admin:
         self.devise.place(x=165,y=28)
         self.ajouter1 = Label(frame1, text='Ajouter',activebackground='white')
         self.ajouter1.place(x=260,y=43)
-        self.ajout1 = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
+        self.ajout1 = ImageTk.PhotoImage(Image.open('../../icones/plus.png').resize((20,20)))
         self.btn_a1 = Button(frame1 ,image= self.ajout1,bd=0, borderwidth=0, highlightthickness=0,command=show_modal_add_price)
         self.btn_a1.place(x=275,y=25)
         self.sup1 = Label(frame1, text='Supprimer')
         self.sup1.place(x=320,y=43)
-        self.supp = ImageTk.PhotoImage(Image.open('./icones/supprimer.png').resize((20,20)))
+        self.supp = ImageTk.PhotoImage(Image.open('../../icones/supprimer.png').resize((20,20)))
         self.btn_s1 = Button(frame1 ,image= self.supp,bd=0, borderwidth=0, highlightthickness=0,command=supprimer_valeur)
         self.btn_s1.place(x=345,y=25)
         
@@ -553,12 +553,12 @@ class Admin:
         self.delai.place(x=175,y=158)
         self.ajoute = Label(frame1, text='Ajouter',activebackground='white')
         self.ajoute.place(x=260,y=173)
-        self.ajou = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
+        self.ajou = ImageTk.PhotoImage(Image.open('../../icones/plus.png').resize((20,20)))
         self.bt = Button(frame1 ,image= self.ajou,bd=0, borderwidth=0, highlightthickness=0,command=show_modal_tranche_payement)
         self.bt.place(x=275,y=155)
         self.su = Label(frame1, text='Supprimer')
         self.su.place(x=320,y=173)
-        self.suppp = ImageTk.PhotoImage(Image.open('./icones/supprimer.png').resize((20,20)))
+        self.suppp = ImageTk.PhotoImage(Image.open('../../icones/supprimer.png').resize((20,20)))
         self.btn_s1 = Button(frame1 ,image= self.suppp,bd=0, borderwidth=0, highlightthickness=0,command=supprimer_valeur_tranche)
         self.btn_s1.place(x=345,y=155)
 
@@ -570,12 +570,12 @@ class Admin:
         self.percent.place(x=220,y=86)
         self.ajouter2 = Label(frame1, text='Ajouter',activebackground='white')
         self.ajouter2.place(x=260,y=103)
-        self.ajout2 = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
+        self.ajout2 = ImageTk.PhotoImage(Image.open('../../icones/plus.png').resize((20,20)))
         self.btn_a2 = Button(frame1 ,image= self.ajout2,bd=0, borderwidth=0, highlightthickness=0,command=show_modal_add_first_price_percent)
         self.btn_a2.place(x=275,y=85)
         self.sup2 = Label(frame1, text='Supprimer')
         self.sup2.place(x=320,y=103)
-        self.supp1 = ImageTk.PhotoImage(Image.open('./icones/supprimer.png').resize((20,20)))
+        self.supp1 = ImageTk.PhotoImage(Image.open('../../icones/supprimer.png').resize((20,20)))
         self.btn_s2 = Button(frame1 ,image= self.supp1,bd=0, borderwidth=0, highlightthickness=0,command=supprimer_valeur_pourcentage)
         self.btn_s2.place(x=345,y=85)
         try:
@@ -685,7 +685,7 @@ class Admin:
 
         self.ajouter = Label(admin, text='Ajouter',fg='white',background='#043737')
         self.ajouter.place(x=570,y=560)
-        self.ajout = ImageTk.PhotoImage(Image.open('./icones/plus.png').resize((20,20)))
+        self.ajout = ImageTk.PhotoImage(Image.open('../../icones/plus.png').resize((20,20)))
         self.btn_a = Button( admin ,image= self.ajout,bd=0,background='#043737',activebackground='#043737', borderwidth=0, highlightthickness=0,command=show_modal)
         self.btn_a.place(x=627,y=560)
 
@@ -693,12 +693,12 @@ class Admin:
 
         self.modifier = Label( admin, text='Modifier',fg='white',background='#043737')
         self.modifier.place(x=690,y=560)
-        self.modif = ImageTk.PhotoImage(Image.open('./icones/stylo.png').resize((20,20)))
+        self.modif = ImageTk.PhotoImage(Image.open('../../icones/stylo.png').resize((20,20)))
         self.btn_m = Button( admin ,image= self.modif,bd=0,background='#043737',activebackground='#043737', borderwidth=0, highlightthickness=0,command=show_modal_edit)
         self.btn_m.place(x=753,y=560)
         self.supprimer = Label( admin, text='Supprimer',fg='white',background='#043737', borderwidth=0, highlightthickness=0)
         self.supprimer.place(x=810,y=560)
-        self.sup = ImageTk.PhotoImage(Image.open('./icones/supprimer.png').resize((20,20)))
+        self.sup = ImageTk.PhotoImage(Image.open('../../icones/supprimer.png').resize((20,20)))
         self.btn_s = Button( admin ,image= self.sup,bd=0,background='#043737',activebackground='#043737', borderwidth=0, highlightthickness=0)
         self.btn_s.place(x=885,y=560)
 
